@@ -51,8 +51,10 @@ A modern Spring Boot application built with Kotlin, featuring a responsive web i
    ```
 
 4. **Access the application**
-   - Web Interface: http://localhost:8080
+   - Web Interface (EN): http://localhost:8080
    - API Endpoint: http://localhost:8080/api/hello
+   - Web Interface (ES): http://localhost:8080/?lang=es
+   - Web Interface (FR): http://localhost:8080/?lang=fr
    - Health Check: http://localhost:8080/actuator/health
 
 ### Using Docker for Development
@@ -95,6 +97,7 @@ Run specific test classes:
 
 ### REST API Endpoints
 - `GET /api/hello` - Returns JSON greeting with timestamp
+- `GET /api/hello/?lang=es|fr` - Returns JSON greeting with timestamp in Spanish/French
 - `GET /api/hello?name={name}` - Returns personalized JSON greeting
 
 ### Monitoring Endpoints
@@ -115,15 +118,17 @@ src/
 ├── main/
 │   ├── kotlin/
 │   │   ├── controller/
-│   │   │   └── HelloController.kt      # Web and API controllers
+│   │   │   ├── HelloController.kt      # Web and API controllers
+│   │   │   └── WebConfig.kt            # Language system
 │   │   └── HelloWorld.kt               # Main application class
 │   └── resources/
 │       ├── application.properties      # Application configuration
 │       ├── templates/
 │       │   └── welcome.html           # Thymeleaf template
-│       └── public/
-│           └── assets/
-│               └── logo.svg           # Application logo
+│       ├── public/
+│       │   └── assets/
+│       │        └── logo.svg           # Application logo
+│       └── message.properties          # Many languages
 └── test/
     └── kotlin/
         ├── controller/
@@ -208,3 +213,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - ✅ Fixed Bootstrap version inconsistencies
 - ✅ Enhanced error handling and validation
 - ✅ Added interactive features and API endpoints
+- ✅ Added configurable greetings in Spanish and French
+- ✅ Added interactive greetings depending on the time of the day
+- ✅ Extended unit tests to evaluate new features
